@@ -14,4 +14,9 @@ export class DataService {
     .map((res: Response) => <Friend[]>res.json())
   }
 
+  public getReferrals(id: number) {
+    return this.http.post('http://localhost:3000/referrals', id)
+    .map((res: Response) => res.json())
+  }
+
 }

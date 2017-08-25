@@ -15,4 +15,7 @@ export class FriendComponent implements OnInit {
   ngOnInit() {
   }
 
+  getReferrals(id:number) {
+    console.log(id);
+  }
 }
