@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
+
 
 @Component({
   selector: 'friends',
@@ -7,8 +9,9 @@ import { Component } from '@angular/core';
 })
 export class FriendsComponent {
   // constructor(private dataService: DataService) {}
-  //
-  // loadFriends() {
-  //   this.dataService.getFriends().subscribe(data => console.log(data));
-  // }
+
+  addFriendById() {
+    // this.dataservice.addFreindById()
+    // dataservice to create a new UsersFriends
+  }
 }

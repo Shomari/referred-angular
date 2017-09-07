@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Friend } from '../../../interfaces/friend.interface'
+import { DataService } from '../../../services/data.service';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'friend',
@@ -10,12 +12,15 @@ export class FriendComponent implements OnInit {
 
   @Input() friend:Friend;
 
-  constructor() { }
+  constructor(
+    private dataService: DataService,
+    private router: Router ) { }
 
   ngOnInit() {
   }
 
-  getReferrals(id:number) {
-    console.log(id);
+  goToReferrals(friendId:number){
+    this.router.navigate([`/referral/${friendId}`]);
   }
+
 }

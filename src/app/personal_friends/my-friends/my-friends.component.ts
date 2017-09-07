@@ -27,9 +27,8 @@ export class MyFriendsComponent implements OnInit {
     this.dataService.getFriends().subscribe(data => {
       this.friends = data;
       this.loaded = true;
-
-      console.log(this.friends)}
-    );
+      console.log(this.friends)
+    });
     // console.log(this.friends)
 
   }
