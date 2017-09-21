@@ -15,17 +15,22 @@ import { ResultsBarComponent } from './personal_page/resultsbar.component'
 import { FriendsComponent } from './personal_friends/friends.component';
 import { MyFriendsComponent } from './personal_friends/my-friends/my-friends.component';
 import { FriendComponent } from './personal_friends/my-friends/friend/friend.component';
-import { ReferralComponent } from './personal_page/referral/referral.component';
+import { RecommendationComponent } from './personal_page/recommendation/recommendation.component';
 import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AddRecommendationComponent } from './personal_page/recommendation/add-recommendation/add-recommendation.component';
+import { FindForRecommendationComponent } from './personal_page/recommendation/find-for-recommendation/find-for-recommendation.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: '', canActivate: [AuthGuard],
     children: [
-      { path: 'referral/:id', component: ReferralComponent },
+      { path: '', component: PersonalComponent },
+      { path: 'recommendation', component: RecommendationComponent },
+      { path: 'addRecommendation', component: AddRecommendationComponent },
+      { path: 'findForRecommendation', component: FindForRecommendationComponent },
       { path: 'friends', component: FriendsComponent },
-      {  path: '', component: PersonalComponent },
+      {  path: 'personal', component: PersonalComponent },
       {  path: 'login', component: LoginComponent },
     ]
   }
@@ -48,9 +53,11 @@ let providers = {
     FriendsComponent,
     MyFriendsComponent,
     FriendComponent,
-    ReferralComponent,
+    RecommendationComponent,
     LoginComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    AddRecommendationComponent,
+    FindForRecommendationComponent
   ],
   imports: [
     RouterModule.forRoot(

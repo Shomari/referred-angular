@@ -19,8 +19,9 @@ export class FriendComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToReferrals(friendId:number){
-    this.router.navigate([`/referral/${friendId}`]);
+  goToRecommendations(friendId:number){
+    localStorage.setItem('last_friend_referral_id', JSON.stringify(friendId));
+    this.router.navigate([`/recommendation`]);
   }
 
 }

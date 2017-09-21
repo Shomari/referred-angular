@@ -2,7 +2,8 @@
   <div class='offset-md-2 top20'>
     <input [value]="friend_id" class='col-md-6' placeholder="Search friends by id" type='text'>
     <button (click)="addFriendById(friend_id)">Submit</button>
-    <input class='col-md-6' placeholder="Search friends by email" type='text'>
+    <input class='col-md-6' placeholder="Search friends by email" type='text' #email>
+    <button (click)="addFriendByEmail(email.value)">Submit</button>
   </div><br/>
   <div class='offset-md-2'>
     <button class="btn btn-primary col-md-3">import facebook</button>

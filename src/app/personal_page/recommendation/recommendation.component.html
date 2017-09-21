@@ -1,0 +1,9 @@
+<p>
+  referral works!
+</p>
+
+<div *ngIf="loaded">
+  <ul>
+    <li *ngFor='let referral of referrals'>{{referral.text}}</li>
+  </ul>
+</div>

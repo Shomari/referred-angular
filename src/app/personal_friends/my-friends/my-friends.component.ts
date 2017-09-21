@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Friend } from '../../interfaces/friend.interface';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'my-friends',
@@ -13,7 +14,7 @@ export class MyFriendsComponent implements OnInit {
   public friends: Friend[];
   public loaded: boolean = false;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   //here you need to get data from the service of friends and send that to html
   // in html you need to roate through the data and display the name and info
@@ -28,7 +29,7 @@ export class MyFriendsComponent implements OnInit {
       this.friends = data;
       this.loaded = true;
       console.log(this.friends)
-    });
+    }, error => { this.router.navigate(['/welcome'])});
     // console.log(this.friends)
 
   }
