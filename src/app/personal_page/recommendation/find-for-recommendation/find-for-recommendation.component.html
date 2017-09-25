@@ -16,3 +16,10 @@
   </select>
   <button (click)="searchByZip(zipcode, category)">Submit</button>
 </div>
+
+// if loaded then show text box an dsubmit button
+<div *ngIf="loaded">
+  {{business.name}}<br>
+  {{business.address}}
+  <textarea #recommendation></textarea><button (click)="submitRecommendation(recommendation.value)">Submit</button>
+</div>

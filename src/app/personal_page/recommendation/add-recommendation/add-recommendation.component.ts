@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Business } from '../../../interfaces/business.interface'
 
 @Component({
   selector: 'app-add-recommendation',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRecommendationComponent implements OnInit {
 
+  @Input() business:Business;
   constructor() { }
 
   ngOnInit() {

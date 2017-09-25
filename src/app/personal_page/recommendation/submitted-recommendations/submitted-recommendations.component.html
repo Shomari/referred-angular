@@ -1,0 +1,7 @@
+<div *ngIf="loaded">
+  <ul>
+    <li *ngFor='let recommendation of recommendations'>{{recommendation.text}}
+      <button (click)="deleteRecommendation(recommendation.id)">Delete Recommendation</button>
+    </li>
+  </ul>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Recommendation } from '../../interfaces/recommendation.interface'
-import { Router, ActivatedRoute, Params, Data } from '@angular/router';
+import { Router, Data } from '@angular/router';
 
 @Component({
   selector: 'app-recommendation',
@@ -13,20 +13,18 @@ export class RecommendationComponent implements OnInit {
   public recommendations: Recommendation[];
   public loaded: boolean = false;
 
-  constructor(private dataService: DataService,    private route: ActivatedRoute,
-    private router: Router) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     let id = localStorage.getItem('last_friend_referral_id')
-    this.getReferrals(JSON.parse(id));
+    this.getFriendsRecommendations(JSON.parse(id));
   }
 
-  getReferrals(id:number) {
-    this.dataService.getReferrals(id).subscribe(data => {
-      console.log(data);
+  getFriendsRecommendations(id:number) {
+    this.dataService.getFriendRecommendations(id).subscribe(data => {
       this.recommendations = data;
       this.loaded = true;
-    }
+    }, error => { console.log('error in recommendation compoennet')}
 
     );
 

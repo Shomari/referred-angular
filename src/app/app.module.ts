@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AddRecommendationComponent } from './personal_page/recommendation/add-recommendation/add-recommendation.component';
 import { FindForRecommendationComponent } from './personal_page/recommendation/find-for-recommendation/find-for-recommendation.component';
+import { SubmittedRecommendationsComponent } from './personal_page/recommendation/submitted-recommendations/submitted-recommendations.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
       { path: '', component: PersonalComponent },
       { path: 'recommendation', component: RecommendationComponent },
       { path: 'addRecommendation', component: AddRecommendationComponent },
+      { path: 'submittedRecommendations', component: SubmittedRecommendationsComponent },
       { path: 'findForRecommendation', component: FindForRecommendationComponent },
       { path: 'friends', component: FriendsComponent },
       {  path: 'personal', component: PersonalComponent },
@@ -57,7 +59,8 @@ let providers = {
     LoginComponent,
     WelcomeComponent,
     AddRecommendationComponent,
-    FindForRecommendationComponent
+    FindForRecommendationComponent,
+    SubmittedRecommendationsComponent
   ],
   imports: [
     RouterModule.forRoot(

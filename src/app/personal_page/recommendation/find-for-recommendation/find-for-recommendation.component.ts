@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../../../services/data.service';
 import { Business } from '../../../interfaces/business.interface';
 
@@ -10,17 +11,22 @@ import { Business } from '../../../interfaces/business.interface';
 export class FindForRecommendationComponent implements OnInit {
 // public friends: Friend
   public business: Business
-  constructor(private ds: DataService) { }
+  public loaded: boolean = false
+  constructor(private ds: DataService, private router: Router) { }
 
   ngOnInit() {
   }
 
   searchByBuid(buid){
     this.ds.getBizByBuid(buid).subscribe(data => {
-      console.log('what');
-      this.business = data
+      this.business = data;
+      this.loaded = true
       console.log(data);
-    });
+    }, error => {console.log('error in find for recommendaiton component')});
+  }
 
+  submitRecommendation(recommendation_text: string){
+    this.ds.submitBizRecommendation(this.business, recommendation_text)
+    this.router.navigate([''])
   }
 }
