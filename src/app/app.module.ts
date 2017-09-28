@@ -10,8 +10,6 @@ import { Angular2SocialLoginModule } from "angular2-social-login";
 import { AppComponent } from './app.component';
 import { PersonalComponent } from './personal_page/personal.component'
 import { SideBarComponent } from './personal_page/sidebar.component'
-import { SearchBarComponent } from './personal_page/searchbar.component'
-import { ResultsBarComponent } from './personal_page/resultsbar.component'
 import { FriendsComponent } from './personal_friends/friends.component';
 import { MyFriendsComponent } from './personal_friends/my-friends/my-friends.component';
 import { FriendComponent } from './personal_friends/my-friends/friend/friend.component';
@@ -50,8 +48,6 @@ let providers = {
     AppComponent,
     PersonalComponent,
     SideBarComponent,
-    SearchBarComponent,
-    ResultsBarComponent,
     FriendsComponent,
     MyFriendsComponent,
     FriendComponent,

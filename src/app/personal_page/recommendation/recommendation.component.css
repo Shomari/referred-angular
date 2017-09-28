@@ -1,0 +1,22 @@
+.list-group-item {
+    height:auto;
+    margin-top: 30px;
+}
+
+.list-group-item-heading {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.text-group {
+  margin-top: 0px;
+}
+
+.list-group-item-text {
+  font-size: 160%;
+}
+
+.sidetext {
+  font-size: 130%;
+  font-style: oblique;
+}

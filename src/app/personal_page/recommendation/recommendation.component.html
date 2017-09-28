@@ -1,9 +1,17 @@
-<p>
-  referral works!
-</p>
-
-<div *ngIf="loaded">
-  <ul>
-    <li *ngFor='let recommendation of recommendations'>{{recommendation.text}}</li>
-  </ul>
+<h1 class='text-center'> {{headerText}} </h1>
+<div class="list-group" *ngIf="loaded">
+  <a href="#" *ngFor='let recommendation of recommendations' class="list-group-item">
+      <div class="media col-md-3">
+          <figure class="pull-left">
+              <img class="media-object img-rounded img-responsive"  src="{{recommendation.image_location}}" alt="profile pic" >
+              <h3>{{recommendation.user_name}} Mcbride</h3><br>
+              <p class='sidetext'>Get 5 dollars cash back when you make an in-person visit to {{recommendation.business_name}}. Must click here and receive your confirmation email to be eligible for cashback.</p>
+          </figure>
+      </div>
+      <div class="col-md-8 text-group">
+          <h1 class="list-group-item-heading text-uppercase">{{recommendation.business_name}}</h1>
+          <h3>{{recommendation.zipcode}}</h3><br><br>
+          <p class="list-group-item-text">{{recommendation.text}}
+      </div>
+  </a>
 </div>

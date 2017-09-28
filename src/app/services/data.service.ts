@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Friend } from '../interfaces/friend.interface'
 import { Recommendation } from '../interfaces/recommendation.interface'
+import { Category } from '../interfaces/category.interface'
 import { Business } from '../interfaces/business.interface'
 import { User } from '../interfaces/user.interface'
 import {Observable} from 'rxjs/Rx';
@@ -14,9 +15,15 @@ export class DataService {
 
   constructor( private http: Http, private auth: AuthService ) { }
 
+  //TODO: Make users service that can get user data so any component can use it
   private getUserData(): any {
     let data = localStorage.getItem('user_data');
     return JSON.parse(data);
+  }
+
+  public getCategories(): Observable<Category[]> {
+    return this.http.get(`http://localhost:3000/categories`)
+    .map((res: Response) => <Category[]>res.json())
   }
 
   public getFriends(): Observable<Friend[]> {
@@ -34,17 +41,22 @@ export class DataService {
     .map((res: Response) => <Recommendation[]>res.json())
   }
 
+  public getRecommendationsForCategory(id: number): Observable<Recommendation[]> {
+    let user_data = this.getUserData();
+    let uid = user_data['uid']
+    return this.http.get(`http://localhost:3000/recommendations?cid=${id}&uid=${uid}`)
+    .map((res: Response) => <Recommendation[]>res.json())
+  }
+
   // this could possibly be combined with getFriendRecommendations
   public loadSubmittedRecommendations(): Observable<Recommendation[]> {
     let user_data = this.getUserData();
     let uid = user_data['uid']
-    console.log(uid)
     return this.http.get(`http://localhost:3000/recommendations/${uid}`)
     .map((res: Response) => <Recommendation[]>res.json())
   }
 
   public deleteRecommendation(recommendation_id: string): void {
-    console.log(recommendation_id)
     this.http.delete(`http://localhost:3000/recommendations/${recommendation_id}`)
     .subscribe()
   }

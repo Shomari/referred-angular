@@ -1,11 +1,9 @@
-<div class="offset-md-2">
-  <ul class="list-unstyled border-1">
-    <li><a routerLink='/personal' routerLinkActive='active'>Home</a></li>
-    <li><a routerLink='/friends' routerLinkActive='active'>Friends</a></li>
-    <li><a routerLink='/findForRecommendation' routerLinkActive='active'>Add Recommendation</a></li>
-    <li><a routerLink='/submittedRecommendations' routerLinkActive='active'>View Submitted Recommendations</a></li>
-    <li><a href="">View Referrals</a></li>
-    <li><a href="">Check Payment Status</a></li>
-    <button type="button" class="btn btn-link" (click)="logout()">Logout</button>
-  </ul>
+<div class='sidebar list-group'>
+    <a class="list-group-item" routerLink='/personal' routerLinkActive='active'><i class="fa fa-home fa-3x" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
+    <a class="list-group-item" routerLink='/friends' routerLinkActive='active'><i class="fa fa-users fa-3x" aria-hidden="true"></i>&nbsp;&nbsp;Friends</a>
+    <a class="list-group-item" routerLink='/findForRecommendation' routerLinkActive='active'><i class="fa fa-plus fa-3x" aria-hidden="true"></i>&nbsp;&nbsp;Add Recommendation</a>
+    <a class="list-group-item" routerLink='/submittedRecommendations' routerLinkActive='active'><i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;Manage Recommendations</a>
+    <!-- <a class="list-group-item" href="">View Referrals</a>
+    <a class="list-group-item" href="">Check Payment Status</a> -->
+    <button class="list-group-item" type="button" class="btn btn-link" (click)="logout()">Logout</button>
 </div>
