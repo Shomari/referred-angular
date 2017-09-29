@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Friend } from '../interfaces/friend.interface'
+import { User } from '../interfaces/user.interface'
 import { Recommendation } from '../interfaces/recommendation.interface'
 import { Category } from '../interfaces/category.interface'
 import { Business } from '../interfaces/business.interface'
-import { User } from '../interfaces/user.interface'
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { AuthService } from "angular2-social-login";
@@ -21,11 +21,17 @@ export class DataService {
     return JSON.parse(data);
   }
 
+  private getCurrentUid(): any {
+    let user_data = this.getUserData();
+    return user_data['uid'];
+  }
+
   public getCategories(): Observable<Category[]> {
     return this.http.get(`http://localhost:3000/categories`)
     .map((res: Response) => <Category[]>res.json())
   }
 
+  // This should be changed to return Observable User
   public getFriends(): Observable<Friend[]> {
     let user_data = this.getUserData();
     let token = user_data['token']
@@ -42,16 +48,14 @@ export class DataService {
   }
 
   public getRecommendationsForCategory(id: number): Observable<Recommendation[]> {
-    let user_data = this.getUserData();
-    let uid = user_data['uid']
+    let uid = this.getCurrentUid();
     return this.http.get(`http://localhost:3000/recommendations?cid=${id}&uid=${uid}`)
     .map((res: Response) => <Recommendation[]>res.json())
   }
 
   // this could possibly be combined with getFriendRecommendations
   public loadSubmittedRecommendations(): Observable<Recommendation[]> {
-    let user_data = this.getUserData();
-    let uid = user_data['uid']
+    let uid = this.getCurrentUid();
     return this.http.get(`http://localhost:3000/recommendations/${uid}`)
     .map((res: Response) => <Recommendation[]>res.json())
   }
@@ -65,14 +69,26 @@ export class DataService {
     this.http.post(`http://localhost:3000/`, {facebook_uid: userId, friend_id: friendId})
   }
 
-  public addFriendByEmail(userId: string, friendEmail: string): void {
-    this.http.post(`http://localhost:3000/friends`, {facebook_uid: userId, friend_email: friendEmail})
-    .subscribe()
+  public searchFriendByEmail(friendEmail: string): Observable<User[]> {
+    let uid = this.getCurrentUid();
+    return this.http.get(`http://localhost:3000/searchFriends?uid=${uid}&friendName=${friendEmail}`)
+    .map((res: Response) => <User[]>res.json())
+  }
+
+  public searchFriendByName(friendName: string): Observable<User[]> {
+    let uid = this.getCurrentUid();
+    return this.http.get(`http://localhost:3000/searchFriends?uid=${uid}&friendName=${friendName}`)
+    .map((res: Response) => <User[]>res.json())
   }
 
   getBizByBuid(buid: number): Observable<Business> {
     return this.http.get(`http://localhost:3000/buid/${buid}`)
     .map((res: Response) => <Business>res.json())
+  }
+
+  getBizByZip(category: string, zipcode: string): Observable<Business[]> {
+    return this.http.get(`http://localhost:3000/business?category=${category}&zipcode=${zipcode}`)
+    .map((res: Response) => <Business[]>res.json())
   }
 
   submitBizRecommendation(business: any, text: string): void {

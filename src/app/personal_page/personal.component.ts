@@ -30,6 +30,8 @@ export class PersonalComponent {
   }
 
   getRecommendationsForCategory(id: number) {
+    console.log(id)
+    console.log('+++++++++++')
     this.ds.getRecommendationsForCategory(id).subscribe(data => {
       this.recommendations = data;
       this.recLoaded = true;

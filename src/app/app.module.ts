@@ -6,7 +6,7 @@ import { DataService } from './services/data.service';
 import { HttpModule } from '@angular/http';
 import { AuthGuard } from "./guards/auth.guard";
 import { Angular2SocialLoginModule } from "angular2-social-login";
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppComponent } from './app.component';
 import { PersonalComponent } from './personal_page/personal.component'
 import { SideBarComponent } from './personal_page/sidebar.component'
@@ -66,7 +66,8 @@ let providers = {
     BrowserModule,
     HttpModule,
     Angular2SocialLoginModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [DataService, AuthGuard],
   bootstrap: [AppComponent]

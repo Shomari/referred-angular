@@ -1,14 +1,10 @@
-<!-- <div class="row">
-  <search-bar class="col-md-6 offset-md-3"></search-bar>
+<div *ngIf="loaded" class="btn-group col-md-4" dropdown>
+  <button dropdownToggle type="button" class="col-md-8 btn btn-primary dropdown-toggle">
+    Choose Category
+  </button>
+  <ul *dropdownMenu class="col-md-8 text-center dropdown-menu" role="menu">
+    <li class='text-center' *ngFor='let category of categories' role="menuitem"><button (click)='getRecommendationsForCategory(category.id)' class="dropdown-item">{{category.name}}</button></li>
+  </ul>
 </div>
-<div class="row">
-</div> -->
 
-  <div ngbDropdown class="d-inline-block col-md-12">
-    <button *ngIf="loaded" class="btn btn-outline-primary col-md-12" id="dropdownBasic1" ngbDropdownToggle>Choose Category</button>
-    <div class="dropdown-menu col-md-12" aria-labelledby="dropdownBasic1">
-      <button *ngFor='let category of categories' (click)='getRecommendationsForCategory(category.id)' class="dropdown-item text-center">{{category.name}}</button>
-    </div>
-  </div>
-
-  <app-recommendation *ngIf="recLoaded" [recommendations]="recommendations"></app-recommendation>
+<app-recommendation *ngIf="recLoaded" [recommendations]="recommendations"></app-recommendation>

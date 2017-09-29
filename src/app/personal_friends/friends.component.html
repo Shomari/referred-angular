@@ -1,17 +1,25 @@
-<div>
-  <div class='offset-md-2 top20'>
-    <input [value]="friend_id" class='col-md-6' placeholder="Search friends by id" type='text'>
-    <button (click)="addFriendById(friend_id)">Submit</button>
-    <input class='col-md-6' placeholder="Search friends by email" type='text' #email>
-    <button (click)="addFriendByEmail(email.value)">Submit</button>
-  </div><br/>
-  <div class='offset-md-2'>
-    <button class="btn btn-primary col-md-3">import facebook</button>
-    <button class="btn btn-primary col-md-3">import twitter</button>
+<h1 class='text-center'>Find friends to add to your network.  The larger the network, the more referral
+    possibilites!</h1><br>
+<div class='friend-group'>
+  <div>
+      <input class='col-md-8 search-field' placeholder="Search friends by name" type='text' #name>&nbsp;
+      <button class="btn btn-style" (click)="searchFriendByName(name.value)">Submit</button>
+  </div><br>
+  <h3 class="or"> - or - </h3>
+  <div><br>
+    <input class='col-md-8 search-field' placeholder="Search friends by email" type='text' #email>&nbsp;
+    <button class="btn btn-style" type="submit" (click)="searchFriendByEmail(email.value)">Submit</button>
   </div>
 </div>
 
-<my-friends></my-friends>
+<div *ngIf='loaded'>
+  <div class='row add-friend-box' *ngFor='let friend of friends'>
+    <img class='col-md-1' src="{{friend.image_location}}">
+    <h1 class='col-md-7' id='add-friend-name'>{{friend.name}}</h1>
+    <button id='add-friend-btn' class='btn-style' type='submit' (click)='addFriend()'>AddFriend</button>
+  </div>
+</div>
+<!-- <my-friends></my-friends> -->
 
 <!-- <div>
   <button (click)="loadFriends()">Load friends</button>

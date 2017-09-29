@@ -1,25 +1,27 @@
-<p>
-  find-for-recommendation works!
-</p>
 <div>
-  <input class='col-md-6' placeholder="Find business to recommend using BUID"
-    type='text' #buid>
-  <button (click)="searchByBuid(buid.value)">Submit</button>
-
+  <div class="btn-group">
+    <input id='buid-field' class='search-field' placeholder="Find business to recommend using BUID"
+      type='text' #buid>&nbsp;&nbsp;
+    <button class="btn btn-style" (click)="searchByBuid(buid.value)">Submit</button>
+  </div><br>
+  <h2 class='text-center' id='or'> - OR - </h2>
+  <div>
+    <div *ngIf="catLoaded" class="btn-group" dropdown>
+      <div>
+        <select class='category-box' #selectedCategory>
+          <option value="" selected disabled hidden>Choose Category</option><i class="fa fa-caret-down" aria-hidden="true"></i>
+          <option *ngFor='let category of categories'>{{category.name}}</option>
+        </select>
+      </div>
+      <input class='search-field' placeholder="Enter business zipcode" #zipcode>&nbsp;&nbsp;
+      <button class="btn btn-style" (click)="searchByZip(selectedCategory.value, zipcode.value)">Submit</button>
+    </div>
+  </div>
 </div>
-<div>
-  <input [value]="zipcode" class='col-md-6' placeholder="Enter business zipcode">
-  <select>
-    <option value='first bizz'>biz</option>
-    <option value='second bizz'>2biz</option>
-    <option value='third bizz'>3biz</option>
-  </select>
-  <button (click)="searchByZip(zipcode, category)">Submit</button>
-</div>
 
-// if loaded then show text box an dsubmit button
-<div *ngIf="loaded">
-  {{business.name}}<br>
-  {{business.address}}
-  <textarea #recommendation></textarea><button (click)="submitRecommendation(recommendation.value)">Submit</button>
+<div class='text-center' id='recommendation-box' *ngIf="loaded">
+  <h1 id='recommendation-biz-name'>{{business.name}}</h1>
+  <h3 id='recommendation-address'>{{business.address}} | {{business.zipcode}}</h3>
+  <textarea cols="65" rows="9" #recommendation></textarea>
+    <button class="btn btn-style" (click)="submitRecommendation(recommendation.value)">Submit</button>
 </div>

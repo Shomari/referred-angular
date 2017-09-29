@@ -1,28 +1,37 @@
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { User } from '../interfaces/User.interface';
 
 
 @Component({
   selector: 'friends',
-  templateUrl: './friends.component.html'
-
+  templateUrl: './friends.component.html',
+  styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent {
+
+  public friends: User[]
+  public loaded: boolean = false
+
   constructor(private ds: DataService) {}
 
   addFriendById(): void {
-    // this.dataservice.addFreindById()
-    // dataservice to create a new UsersFriends
   }
 
+  searchFriendByName(name): void {
+    this.ds.searchFriendByName(name).subscribe(data => {
+      this.friends = data;
+      this.loaded = true;
+      console.log(this.friends)
+    }, error => { console.log('error in Friend component')});
+  }
 
   // sept 10, figure out best eway for localstoage to send data here.  either through
   // json srignify or not
-  addFriendByEmail(email): void {
-    let data = localStorage.getItem('user_data');
-    let user_data = JSON.parse(data);
-    let id = user_data['facebook_uid']
-    this.ds.addFriendByEmail(id, email)
-
+  searchFriendByEmail(email): void {
+    this.ds.searchFriendByEmail(email).subscribe(data => {
+      this.friends = data;
+      this.loaded = true;
+    }, error => { console.log('error in Friend component')});
   }
 }
