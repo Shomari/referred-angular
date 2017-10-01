@@ -20,11 +20,7 @@ export class SideBarComponent implements OnInit{
 
   }
 
-  logout(){
-    localStorage.removeItem('access_token');
-    this.router.navigate(['/welcome']);
 
-  }
 
 
 }

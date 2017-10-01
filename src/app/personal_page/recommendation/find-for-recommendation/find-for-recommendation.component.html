@@ -19,7 +19,21 @@
   </div>
 </div>
 
-<div class='text-center' id='recommendation-box' *ngIf="loaded">
+<div *ngIf='bizByZipLoaded' id='select-biz-box'>
+  <div>
+    <div class='row add-friend-box' *ngFor='let business of businesses'>
+      <img class='col-md-1' src="{{business.name}}">
+      <h1 class='col-md-7' id='add-friend-name'>{{business.zipcode}}</h1>
+      <button id='add-friend-btn' class='btn-style' type='submit' (click)='createRecommendation(business)'>Create Recommendation </button>
+    </div>
+  </div>
+  <p> Don't see the business you want to recommend listed?  Add in their info and we
+      will get them setup ASAP.  Businesses must sign our agreement before recommendations
+      can be added </p>
+  <button class="btn btn-style" (click)="addBusiness()">Add A Business</button>
+</div>
+
+<div class='text-center' id='recommendation-box' *ngIf="choosenBusiness">
   <h1 id='recommendation-biz-name'>{{business.name}}</h1>
   <h3 id='recommendation-address'>{{business.address}} | {{business.zipcode}}</h3>
   <textarea cols="65" rows="9" #recommendation></textarea>

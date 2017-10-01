@@ -98,6 +98,10 @@ export class DataService {
     .subscribe()
   }
 
+  submitBizLead(formData: any): void {
+    this.http.post(`http://localhost:3000/leads`, formData).subscribe()
+  }
+
 
 
   public logInFB(): any {

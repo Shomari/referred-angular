@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { DataService } from './services/data.service';
+import { MessageService } from './services/message.service';
 import { HttpModule } from '@angular/http';
 import { AuthGuard } from "./guards/auth.guard";
 import { Angular2SocialLoginModule } from "angular2-social-login";
@@ -19,6 +21,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AddRecommendationComponent } from './personal_page/recommendation/add-recommendation/add-recommendation.component';
 import { FindForRecommendationComponent } from './personal_page/recommendation/find-for-recommendation/find-for-recommendation.component';
 import { SubmittedRecommendationsComponent } from './personal_page/recommendation/submitted-recommendations/submitted-recommendations.component';
+import { AddBusinessComponent } from './personal_page/recommendation/add-business/add-business.component';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -32,6 +36,7 @@ const appRoutes: Routes = [
       { path: 'friends', component: FriendsComponent },
       {  path: 'personal', component: PersonalComponent },
       {  path: 'login', component: LoginComponent },
+      {  path: 'addBusiness', component: AddBusinessComponent},
     ]
   }
 ]
@@ -56,7 +61,9 @@ let providers = {
     WelcomeComponent,
     AddRecommendationComponent,
     FindForRecommendationComponent,
-    SubmittedRecommendationsComponent
+    SubmittedRecommendationsComponent,
+    AddBusinessComponent,
+    MessageComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -65,11 +72,12 @@ let providers = {
     ),
     BrowserModule,
     HttpModule,
+    FormsModule,
     Angular2SocialLoginModule,
     NgbModule.forRoot(),
     BsDropdownModule.forRoot()
   ],
-  providers: [DataService, AuthGuard],
+  providers: [DataService, AuthGuard, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,6 +23,9 @@ export class FriendsComponent {
       this.friends = data;
       this.loaded = true;
       console.log(this.friends)
+      if(this.friends == null) {
+
+      }
     }, error => { console.log('error in Friend component')});
   }
 

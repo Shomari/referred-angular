@@ -16,7 +16,10 @@ export class FindForRecommendationComponent implements OnInit {
   public businesses: Business[]
   public loaded: boolean = false
   public catLoaded: boolean = false
+  public bizByZipLoaded: boolean = false
+  public choosenBusiness: boolean = false
   public categories: Category[];
+
   constructor(private ds: DataService, private router: Router) { }
 
   ngOnInit() {
@@ -33,7 +36,7 @@ export class FindForRecommendationComponent implements OnInit {
   searchByBuid(buid){
     this.ds.getBizByBuid(buid).subscribe(data => {
       this.business = data;
-      this.loaded = true
+      this.choosenBusiness = true
       console.log(data);
     }, error => {console.log('error in find for recommendaiton component')});
   }
@@ -41,13 +44,22 @@ export class FindForRecommendationComponent implements OnInit {
   searchByZip(category: string, zipcode: string) {
     this.ds.getBizByZip(category, zipcode).subscribe(data => {
       this.businesses = data;
-      this.loaded = true
+      this.bizByZipLoaded = true
       console.log(data);
     }, error => {console.log('error in find for recommendaiton component')});
+  }
+
+  createRecommendation(business: any) {
+    this.business = business;
+    this.choosenBusiness = true;
   }
 
   submitRecommendation(recommendation_text: string){
     this.ds.submitBizRecommendation(this.business, recommendation_text)
     this.router.navigate([''])
+  }
+
+  addBusiness() {
+    this.router.navigate(['/addBusiness'])
   }
 }
