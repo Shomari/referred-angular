@@ -23,6 +23,8 @@ import { FindForRecommendationComponent } from './personal_page/recommendation/f
 import { SubmittedRecommendationsComponent } from './personal_page/recommendation/submitted-recommendations/submitted-recommendations.component';
 import { AddBusinessComponent } from './personal_page/recommendation/add-business/add-business.component';
 import { MessageComponent } from './message/message.component';
+import { ReferralInfoComponent } from './personal_page/recommendation/referral-info/referral-info.component';
+import { ManageReferralsComponent } from './personal_page/recommendation/manage-referrals/manage-referrals.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -33,6 +35,9 @@ const appRoutes: Routes = [
       { path: 'addRecommendation', component: AddRecommendationComponent },
       { path: 'submittedRecommendations', component: SubmittedRecommendationsComponent },
       { path: 'findForRecommendation', component: FindForRecommendationComponent },
+      { path: 'referralInfo', component: ReferralInfoComponent },
+      { path: 'myFriends', component: MyFriendsComponent },
+      { path: 'manageReferrals', component: ManageReferralsComponent },
       { path: 'friends', component: FriendsComponent },
       {  path: 'personal', component: PersonalComponent },
       {  path: 'login', component: LoginComponent },
@@ -63,7 +68,9 @@ let providers = {
     FindForRecommendationComponent,
     SubmittedRecommendationsComponent,
     AddBusinessComponent,
-    MessageComponent
+    MessageComponent,
+    ReferralInfoComponent,
+    ManageReferralsComponent
   ],
   imports: [
     RouterModule.forRoot(

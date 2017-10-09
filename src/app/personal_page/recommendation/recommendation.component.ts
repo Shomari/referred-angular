@@ -15,14 +15,17 @@ export class RecommendationComponent implements OnInit {
   public loaded: boolean = false;
   public headerText: string;
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private ds: DataService, private router: Router) { }
 
+  // If recommendations aren't passed in, then get the id of the friend
+  // that was clicked on.
   ngOnInit() {
     if(this.recommendations == null) {
       let id = localStorage.getItem('last_friend_referral_id')
       this.getFriendsRecommendations(JSON.parse(id));
     } else {
       console.log(this.recommendations)
+      console.log('-----')
       let category = this.recommendations[0]["category"];
       this.headerText = `Your friends' ${category} recommendations`
       this.loaded = true
@@ -30,11 +33,17 @@ export class RecommendationComponent implements OnInit {
   }
 
   getFriendsRecommendations(id:number) {
-    this.dataService.getFriendRecommendations(id).subscribe(data => {
+    this.ds.getFriendRecommendations(id).subscribe(data => {
       this.recommendations = data;
       this.loaded = true;
     }, error => { console.log('error in recommendation compoennet')}
     );
+  }
+
+  createReferral(recommendation_id: string) {
+    this.ds.createReferral(recommendation_id);
+    this.router.navigate(['/referralInfo'])
+
   }
 
 }

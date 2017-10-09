@@ -1,0 +1,12 @@
+<div *ngIf='loadedReferrers'>
+  Referrals that your friends have created from your recommendations
+  <div *ngFor='let referrer of referrers'>
+    {{referrer.business_name}}
+  </div>
+</div>
+<div *ngIf='loadedReferreds'>
+  Referrals that you created from your friends recommendations
+  <div *ngFor='let referred of referreds'>
+    {{referred.business_name}}
+  </div>
+</div>

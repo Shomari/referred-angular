@@ -3,11 +3,13 @@ import { Http, Response } from '@angular/http';
 import { Friend } from '../interfaces/friend.interface'
 import { User } from '../interfaces/user.interface'
 import { Recommendation } from '../interfaces/recommendation.interface'
+import { Referral } from '../interfaces/referral.interface'
 import { Category } from '../interfaces/category.interface'
 import { Business } from '../interfaces/business.interface'
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { AuthService } from "angular2-social-login";
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
@@ -65,6 +67,24 @@ export class DataService {
     .subscribe()
   }
 
+  public createReferral(recommendation_id: string): void {
+    let uid = this.getCurrentUid();
+    this.http.post(`http://localhost:3000/referrals`, {recommendation_id: recommendation_id,
+      lead_uid: uid}).subscribe();
+  }
+
+  getReferrers(): Observable<Referral[]> {
+    let uid = this.getCurrentUid();
+    return this.http.get(`http://localhost:3000/referrers/${uid}`)
+      .map((res: Response) => <Referral[]>res.json());
+  }
+
+  getReferreds(): Observable<Referral[]> {
+    let uid = this.getCurrentUid();
+    return this.http.get(`http://localhost:3000/referreds/${uid}`)
+      .map((res: Response) => <Referral[]>res.json());
+  }
+
   public addFriendById(userId: number, friendId: number): void {
     this.http.post(`http://localhost:3000/`, {facebook_uid: userId, friend_id: friendId})
   }
@@ -90,6 +110,8 @@ export class DataService {
     return this.http.get(`http://localhost:3000/business?category=${category}&zipcode=${zipcode}`)
     .map((res: Response) => <Business[]>res.json())
   }
+
+
 
   submitBizRecommendation(business: any, text: string): void {
     let user_data = this.getUserData();
