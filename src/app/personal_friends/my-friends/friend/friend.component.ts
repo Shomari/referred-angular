@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Friend } from '../../../interfaces/friend.interface'
+import { User } from '../../../interfaces/user.interface'
 import { DataService } from '../../../services/data.service';
 import { RouterModule, Routes, Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { RouterModule, Routes, Router } from '@angular/router';
 })
 export class FriendComponent implements OnInit {
 
-  @Input() friend:Friend;
+  @Input() friend:User;
 
   constructor(
     private dataService: DataService,
